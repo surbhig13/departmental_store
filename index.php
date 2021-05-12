@@ -202,13 +202,11 @@ ctx.translate(radius, radius);
 radius = radius * 0.90
 setInterval(drawClock, 1000);
 
-<<<<<<< Updated upstream
 function drawClock() {
   drawFace(ctx, radius);
   drawNumbers(ctx, radius);
   drawTime(ctx, radius);
 }
-=======
 function view_items(){
   $.post("view_items.php",$("#tab1").serialize(),function(data, status){
     if(status=="success"){
@@ -216,8 +214,6 @@ function view_items(){
     }
   });
 }
-
->>>>>>> Stashed changes
 
 function drawFace(ctx, radius) {
   var grad;
