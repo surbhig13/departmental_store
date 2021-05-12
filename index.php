@@ -62,8 +62,8 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
 </datalist>
       <div class="column right" style="background-color:lightsteelblue;">
         <div class="row">
-          <button class="btn btn-success btn-lg col-12" >Payy</button>
-          <button class="btn btn-success btn-lg col-12"  data-toggle="modal" data-target="#myModal">Add Items</button>
+          <button class="btn btn-success btn-lg col-12" >Pay</button>
+          <button class="btn btn-success btn-lg col-12"  data-toggle="modal" data-target="#myModal">Add Item</button>
           <button class="btn btn-success btn-lg col-12" data-toggle="modal" data-target="#myModal1" >View/Modify Items</button>
         </div>
           
