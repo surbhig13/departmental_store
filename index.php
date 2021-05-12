@@ -63,8 +63,12 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
       <div class="column right" style="background-color:lightsteelblue;">
         <div class="row">
           <button class="btn btn-success btn-lg col-12" >Pay</button>
-          <button class="btn btn-success btn-lg col-12"  data-toggle="modal" data-target="#myModal">Add Item</button>
+          <button class="btn btn-success btn-lg col-12" data-toggle="modal" data-target="#myModal"  >Add Item</button>
           <button class="btn btn-success btn-lg col-12" data-toggle="modal" data-target="#myModal1" >View/Modify Items</button>
+          <button class="btn btn-success btn-lg col-12" data-toggle="modal" data-target="#myModal2" >Discount</button>
+          <button class="btn btn-success btn-lg col-12" data-toggle="modal" data-target="#myModal3" >Payment Mode</button>
+          <button class="btn btn-success btn-lg col-12" data-toggle="modal" data-target="#myModal4" >Hold Bill</button>
+          <button class="btn btn-success btn-lg col-12" data-toggle="modal" data-target="#myModal5" >Cancel Bill</button>
         </div>
           
         </div>
@@ -113,23 +117,7 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
             <th>Item Code</th>
             <th>Item Price</th>
           </tr>
-       <?php
-
-            if ($con->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-            }
-         $sql = "SELECT item_name, item_code,item_price FROM item_master";
-         $result = $con->query($sql);
-if ($result->num_rows > 0) {
-// output data of each row
-while($row = $result->fetch_assoc()) {
-echo "<tr><td>" . $row["item_name"]. "</td><td>" . $row["item_code"] . "</td><td>"
-. $row["item_price"]. "</td></tr>";
-}
-echo "</table>";
-} else { echo "0 results"; }
-$con->close();
-?>
+      
 </table>
   </div>
 

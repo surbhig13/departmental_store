@@ -128,18 +128,13 @@ body {
     font-size: 20px;
     cursor: pointer;
     width: 100%;
-    display: block;
-    
-    
-    
+    display: block; 
   }
   
   .btn-group .button:not(:last-child) {
     border-bottom: none; 
-    
   }
   
   .btn-group .button:hover {
     background-color: #3e8e41;
-
   }
