@@ -64,7 +64,7 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
         <div class="row">
           <button class="btn btn-success btn-lg col-12" >Pay</button>
           <button class="btn btn-success btn-lg col-12"  data-toggle="modal" data-target="#myModal">Add Item</button>
-          <button class="btn btn-success btn-lg col-12" >View/Modify Items</button>
+          <button class="btn btn-success btn-lg col-12" data-toggle="modal" data-target="#myModal1" >View/Modify Items</button>
         </div>
           
         </div>
@@ -72,7 +72,7 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
       </div>
     </div>
 
-    <!-- Modal -->
+    <!--add items Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
@@ -98,7 +98,45 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
     </div>
   </div>
 
+  <!-- view item Modal -->
+<!-- The Modal -->
+<div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
     
+
+  <!-- Modal content -->
+  <div class="modal-content1">
+    <span class="close">&times;</span>
+    <table>
+         <tr>
+            <th>Item Name</th>
+            <th>Item Code</th>
+            <th>Item Price</th>
+          </tr>
+       <?php
+
+            if ($con->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+            }
+         $sql = "SELECT item_name, item_code,item_price FROM item_master";
+         $result = $con->query($sql);
+if ($result->num_rows > 0) {
+// output data of each row
+while($row = $result->fetch_assoc()) {
+echo "<tr><td>" . $row["item_name"]. "</td><td>" . $row["item_code"] . "</td><td>"
+. $row["item_price"]. "</td></tr>";
+}
+echo "</table>";
+} else { echo "0 results"; }
+$con->close();
+?>
+</table>
+  </div>
+
+</div>
+</div>
+    
+
       <div class="footer"> 
         <div class='row'>
             <div class="col-2">
@@ -129,6 +167,8 @@ function add_items(){
     }
   });
 }
+
+
 </script>
 
 
