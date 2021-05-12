@@ -94,7 +94,7 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
           <button  class="btn btn-danger" type="button" data-dismiss="modal" style='width:130px;'>Close</button>
       
         </div>
-       </div>
+       </div> 
     </div>
   </div>
 
