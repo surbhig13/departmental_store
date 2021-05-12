@@ -149,7 +149,7 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
   <!-- Modal content -->
   <div class="modal-content1">
     <span class="close">&times;</span>
-    <table>
+    <table id="tab1">
          <tr>
             <th>Item Name</th>
             <th>Item Code</th>
@@ -202,11 +202,22 @@ ctx.translate(radius, radius);
 radius = radius * 0.90
 setInterval(drawClock, 1000);
 
+<<<<<<< Updated upstream
 function drawClock() {
   drawFace(ctx, radius);
   drawNumbers(ctx, radius);
   drawTime(ctx, radius);
 }
+=======
+function view_items(){
+  $.post("view_items.php",$("#tab1").serialize(),function(data, status){
+    if(status=="success"){
+      document.getElementById("item_list").innerHTML=data;
+    }
+  });
+}
+
+>>>>>>> Stashed changes
 
 function drawFace(ctx, radius) {
   var grad;

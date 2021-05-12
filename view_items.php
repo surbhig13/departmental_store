@@ -14,4 +14,8 @@ echo "<tr><td>" . $row["item_name"]. "</td><td>" . $row["item_code"] . "</td><td
 echo "</table>";
 } else { echo "0 results"; }
 $con->close();
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 ?>
