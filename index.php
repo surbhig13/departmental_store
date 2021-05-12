@@ -36,22 +36,53 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
       </div>
     
       <div class="main">
-       <div class="row">
-         <div class="column left" style="background-color:lightsteelblue;">
-           <table style="width:100% ;" >
+       <div class="row p-1">
+         <div class='col-6' style=''>
+         <div class="col-12" style="background-color:lightsteelblue;overflow:auto;height:420px;">
+           <table class="table-hover table-condensed" style="width:100%;text-align:center" >
              <tr>
                <th>Description</th>
-               <th>Price</th>
                <th>Qty</th>
+               <th>Price</th>
                <th>Sub Total</th>
              </tr>
-           </table>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+             <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+            </table>
+          </div>
+          <div class='col-12 border rounded-lg' style='background-color:lightsteelblue;height:50px;'>
+            <h3 style='height:50px;display:flex; align-items: center;color:black;font-weight:bold'>TOTAL</h3>
+          </div>
          </div>
 
-      <div class="column middle" style="background-color:rgb(183, 201, 224);">
-
-        <label for="bar">Barcode/Stock Code/Description</label><br>
-          <input type="text" id="bar" name="bar" list='item_list' autofocus autocomplete="off"><br>
+      <div class="col-4 p-1" style="background-color:rgb(183, 201, 224);">
+          <input type="text" id="bar" name="bar" list='item_list' autofocus autocomplete="off" placeholder='Barcode/Stock Code/Description'><br>
 
         <table style="width: 100%; height: 100px;">
 
@@ -67,7 +98,7 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
   }
 ?>
 </datalist>
-      <div class="column right" style="background-color:lightsteelblue;">
+      <div class="col-2" style="background-color:lightsteelblue;">
         <div class="row">
           <button class="btn btn-success btn-lg col-12" >Pay</button>
           <button class="btn btn-success btn-lg col-12" data-toggle="modal" data-target="#myModal"  >Add Item</button>
@@ -244,8 +275,6 @@ function drawHand(ctx, pos, length, width) {
     ctx.rotate(-pos);
 }
 </script>
-
-
 
 </body>
 
