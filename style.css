@@ -1,0 +1,99 @@
+body {
+    margin: 0px;
+    color: white;
+  }
+  
+  .wrapper * {
+    margin: 1px;
+    padding: 2px;
+    background-color: lightsteelblue;
+    border-radius: 1px;
+    flex: 1;
+   
+  }
+  
+
+  header {
+    color: white;
+    text-align: center;
+    margin: 2px;
+  }
+
+  .footer {
+    text-align: center;
+    margin-left: 5px;
+    margin-top: 2px;
+    background-color: lightsteelblue;
+    padding-left: 12%;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  .main{
+    border-radius: 1px;
+    margin: 2px;
+    margin-left: 2px;
+
+  }
+
+  .column {
+    text-align: center;
+    float: left;
+    padding: 15px;
+    height: 500px;
+   
+    }
+  .middle {
+    width: 30%;
+  }
+  .right{
+    width:20%;
+  }
+  
+  .left {
+    width: 50%;
+  }
+  
+
+  /* Button */
+
+  .modal-content {
+    background-color:rgb(127, 163, 185); 
+    border: none;
+    color:beige;
+    padding: 7px 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    
+    
+  }
+  
+  .btn-group .button,.save {
+    background-color: #3e889b;
+    border: 4px solid rgb(207, 220, 228);
+    color: rgb(26, 132, 173);
+    padding: 18px 50px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    
+    
+    
+  }
+  
+  .btn-group .button:not(:last-child) {
+    border-bottom: none; 
+    
+  }
+  
+  .btn-group .button:hover {
+    background-color: #3e8e41;
+
+  }
