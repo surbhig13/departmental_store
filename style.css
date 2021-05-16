@@ -1,16 +1,20 @@
+html, body {
+  min-height: 100%!important;
+  background-color: #b7c9e0!important;
+}
+
 body {
-    
-    margin: 0px;
-    color: white;
+    width: 100%;
+    margin: 5px;
   }
   
-  .wrapper * {
+  .wrapper * {    
     margin: 1px;
     padding: 2px;
     background-color: lightsteelblue;
     border-radius: 1px;
     flex: 1;
-   
+    background-color: lightsteelblue;
   }
   
 
@@ -22,40 +26,23 @@ body {
 
   .footer {
     text-align: center;
-    margin-left: 5px;
-    margin-top: 2px;
     background-color: lightsteelblue;
-    padding-left: 12%;
   }
 
-  * {
-    box-sizing: border-box;
-  }
+ 
   
   .main{
-    border-radius: 1px;
-    margin: 2px;
-    margin-left: 2px;
   }
 
   .column {
     text-align: center;
     float: left;
-    padding: 15px;
-    height: 500px;
+    padding: 5px;
+    height: 600px;
     overflow: auto;
    
     }
-  .middle {
-    width: 30%;
-  }
-  .right{
-    width:20%;
-  }
   
-  .left {
-    width: 50%;
-  }
   
 
   /* Button */
@@ -113,11 +100,7 @@ body {
       text-align: left;
       }
       th {
-<<<<<<< Updated upstream
       background-color: #74acd4;
-=======
-      background-color: #58a792;
->>>>>>> Stashed changes
       color: white;
       }
       tr:nth-child(even) {background-color: #f2f2f2}
@@ -141,4 +124,10 @@ body {
   
   .btn-group .button:hover {
     background-color: #3e8e41;
+  }
+
+  @media only screen and (max-width: 800px) {
+    .wrapper,.column, .main, .footer {
+      width: 100%;
+    }
   }
