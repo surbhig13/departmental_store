@@ -59,7 +59,7 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
 
       <div class="col-4" style="background-color:rgb(183, 201, 224);border:2px white solid">
       <div class="col-12 form-group" style='height:10%;'>
-        <input class='form-control mt-1' type="text" id="bar" name="bar" list='' autofocus autocomplete="off" placeholder='Barcode/Stock Code/Description'><br>
+        <input class='form-control mt-1' type="text" id="bar" name="bar" list='' autofocus autocomplete="off" placeholder='BARCODE / ITEM NAME'><br>
       </div>
       <div class="col-12" style="background-color:rgb(183, 201, 224);height:80%;overflow:hidden;">
       <table style="width: 100%;"></table>
@@ -96,17 +96,23 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
     <div class="modal-dialog">
     
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content">  
         
-        <form id="additemform">
-             <label for="item_name">ITEM NAME:</label>
-              <input type="text" id="item_name" name="item_name">
-            <label for="item_code">ITEM CODE:</label>
-              <input type="text" id="item_code" name="item_code">
-            <label for="item_price">ITEM PRICE:</label>
-              <input type="text" id="item_price" name="item_price">  <br>
+        <form class="col-12" id="additemform">
+           <div class="form-row mt-3">
+             <label class="col-sm-4 col-form-label"  for="item_name">ITEM NAME:</label>
+               <input type="text" class="form-control col-sm-8" name="item_name" id="item_name" autocomplete="off" onkeyup="this.value=toTitleCase(this.value)"><br>
+            
+            <label class="col-sm-4 col-form-label mt-2" for="item_code">ITEM CODE:</label>
+              <input type="text" class="form-control col-sm-8 mt-2" id="item_code" name="item_code" autocomplete="off"><br>
+              
+            <label class="col-sm-4 col-form-label mt-2" for="item_price">ITEM PRICE:</label>
+              <input type="text" class="form-control col-sm-8 mt-2" id="item_price" name="item_price" autocomplete="off">  <br><br>
+
+           </div>    
           </form>
-         
+      
+
          <div class="btn-group"> 
           <button class="btn btn-success" type="save" data-dismiss="modal" style="width:130px;" onclick="add_items()">Save</button>
        
@@ -172,6 +178,15 @@ function add_items(){
     }
   });
 }
+function toTitleCase(str) {
+  return str.replace(
+    /\w\S*/g,
+    function(txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    }
+  );
+}
+
 $('#bar').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){

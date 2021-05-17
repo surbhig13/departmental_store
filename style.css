@@ -8,14 +8,6 @@ body {
     margin: 5px;
   }
   
-  .wrapper * {    
-    margin: 1px;
-    padding: 2px;
-    background-color: lightsteelblue;
-    border-radius: 1px;
-    flex: 1;
-    background-color: lightsteelblue;
-  }
   
 
   header {
@@ -24,12 +16,6 @@ body {
     margin: 2px;
   }
 
-  .footer {
-    text-align: center;
-    background-color: lightsteelblue;
-  }
-
- 
   
   .main{
   }
@@ -47,12 +33,12 @@ body {
 
   /* Button */
   .modal-content {
-    background-color:rgb(127, 163, 185); 
+    background-color:rgb(255, 255, 255); 
     border: none;
-    color:beige;
-    padding: 7px 14px;
+    color:rgb(12, 12, 0);
+    padding: 7px 14px; 
     text-align: center;
-    text-decoration: none;
+    text-decoration:azure;
     display: inline-block;
     font-size: 20px;
     
@@ -100,10 +86,10 @@ body {
       text-align: left;
       }
       th {
-      background-color: #74acd4;
+      background-color: #007bff;
       color: white;
       }
-      tr:nth-child(even) {background-color: #f2f2f2}
+      tr1:nth-child(even) {background-color: #f2f2f2}
   
   .btn-group .button,.save {
     background-color: #3e889b;
@@ -116,6 +102,7 @@ body {
     cursor: pointer;
     width: 100%;
     display: block; 
+    
   }
   
   .btn-group .button:not(:last-child) {
@@ -126,8 +113,4 @@ body {
     background-color: #3e8e41;
   }
 
-  @media only screen and (max-width: 800px) {
-    .wrapper,.column, .main, .footer {
-      width: 100%;
-    }
-  }
+ 
