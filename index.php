@@ -79,7 +79,7 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
         <div class="row">
           <div class='col-12 mt-1'><button class="btn btn-primary btn-lg col-12" >Save and Print</button></div>
           <div class='col-12 mt-2'><button class="btn btn-primary btn-lg col-12" data-toggle="modal" data-target="#myModal"  >Add Item</button></div>
-          <div class='col-12 mt-2'><button class="btn btn-primary btn-lg col-12" data-toggle="modal" data-target="#myModal1" >View/Modify Items</button></div>
+          <div class='col-12 mt-2'><button class="btn btn-primary btn-lg col-12" data-toggle="modal" data-target="#myModal1" onclick="fetch_items()" >View/Modify Items</button></div>
           <div class='col-12 mt-2'><button class="btn btn-primary btn-lg col-12" data-toggle="modal" data-target="#myModal2" >Discount</button></div>
           <div class='col-12 mt-2'><button class="btn btn-primary btn-lg col-12" data-toggle="modal" data-target="#myModal3" >Payment Mode</button></div>
           <div class='col-12 mt-2'><button class="btn btn-primary btn-lg col-12" data-toggle="modal" data-target="#myModal4" >Hold Bill</button></div>
@@ -131,16 +131,28 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
   <!-- Modal content -->
   <div class="modal-content1">
     <span class="close">&times;</span>
-    <table id="tab1">
-      <tr>
-        <th>Item Name</th>
-        <th>Item Code</th>
-        <th>Item Price</th>
-      </tr>
+    <div class="row">
+        
+         <div class="col-12 mt-1" style="background-color:lightsteelblue;overflow:auto;min-height:90%;max-height:90%;">
+           <table class="table-hover table-condensed" style="width:100%;text-align:center" >
+             <thead>
+             <tr>
+               <th>Item Name</th>
+               <th>Item Code</th>
+               <th>Item Price</th>
+               
+             </tr>
+             </thead>
+           <tbody id="table2">
+
+           </tbody>  
     </table>
+    </div>
+    </div>
   </div>
  </div>
 </div>
+
         <div class='row' style='background-color:lightsteelblue;margin-top:20px;'>
           <div class="col-1">
           </div>
@@ -201,6 +213,24 @@ $('#bar').keypress(function(event){
 });
 
 </script>
+
+<script>
+ function fetch_items(){
+	$.ajax({
+		url: "view_ajax.php",
+		type: "POST",
+		cache: false,
+		success: function(data){
+			
+			$('#table2').html(data); 
+		}
+	});
+ }
+</script>
+
+
+
+
 <script>
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
