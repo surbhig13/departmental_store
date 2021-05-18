@@ -1,6 +1,6 @@
 <?php 
 include("connect.php");
-$q=mysqli_query($con,"select * from item_master where item_status='active'");
+$q=mysqli_query($con,"select * from item_master where item_status='active' order by item_name");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,8 +37,8 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
       <div class="main">
        <div class="row">
          <div class='col-6' style='padding:0px;border:2px white solid;'>
-         <div class="col-12 mt-1" style="background-color:lightsteelblue;overflow:auto;min-height:90%;max-height:90%;">
-           <table class="table-hover table-condensed" style="width:100%;text-align:center" >
+         <div class="table-responsive col-12 mt-1" style="background-color:lightsteelblue;overflow:auto; min-height:90%; max-height:90%;">
+           <table class="table-hover table-condensed" style="width:100%;text-align:center;" >
              <thead>
              <tr>
                <th>Description</th>
@@ -61,20 +61,19 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
       <div class="col-12 form-group" style='height:10%;'>
         <input class='form-control mt-1' type="text" id="bar" name="bar" list='' autofocus autocomplete="off" placeholder='BARCODE / ITEM NAME'><br>
       </div>
-      <div class="col-12" style="background-color:rgb(183, 201, 224);height:80%;overflow:hidden;">
-      <table style="width: 100%;"></table>
-
+      <div class="col-12" style="background-color:rgb(183, 201, 224);height:80%;overflow:auto;">
+		<div class="list-group" id="item_list">
+		<?php
+			while($data=mysqli_fetch_array($q)){
+				extract($data);
+		?>
+				<a class="list-group-item" style="overflow:hidden;color:black;" href="#" onclick="select_item(this.innerHTML);"><?php echo $item_name;?></a>
+		<?php 
+				}
+		?>
+		</div>
+	  </div>
       </div>
-      </div>
-<datalist id='item_list'>
-<?php
-  while($data=mysqli_fetch_array($q)){
-    extract($data);
-    echo "<option>$item_name ($item_code)</option>";
-
-  }
-?>
-</datalist>
       <div class="col-2" style="background-color:lightsteelblue;min-height:100%;">
         <div class="row">
           <div class='col-12 mt-1'><button class="btn btn-primary btn-lg col-12" >Save and Print</button></div>
@@ -182,7 +181,10 @@ $q=mysqli_query($con,"select * from item_master where item_status='active'");
   function myFunction() {
     document.getElementById("myModal").innerHTML = "";
   }
-
+function select_item(item_name){
+	document.getElementById("bar").value = item_name;
+	document.getElementById("bar").focus();
+}
 function add_items(){
   $.post("add_items.php",$("#additemform").serialize(),function(data, status){
     if(status=="success"){
@@ -207,15 +209,13 @@ $('#bar').keypress(function(event){
 		$.post("search_items.php","barcode="+barcode+"&bill_id="+bill_id,function(data, status){
 			if(status=="success"){
 				document.getElementById("bill_items").innerHTML=data;
+				document.getElementById("bar").value="";
 			}
 		});
 	}
 });
 
-</script>
-
-<script>
- function fetch_items(){
+function fetch_items(){
 	$.ajax({
 		url: "view_ajax.php",
 		type: "POST",
@@ -229,9 +229,8 @@ $('#bar').keypress(function(event){
 </script>
 
 
-
-
 <script>
+//Clock
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var radius = canvas.height / 2;
