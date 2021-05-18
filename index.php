@@ -8,15 +8,24 @@ $q=mysqli_query($con,"select * from item_master where item_status='active' order
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
   <script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src= "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> </script> 
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.24/af-2.3.6/r-2.2.7/sc-2.0.3/sp-1.2.2/sl-1.3.3/datatables.min.css"/>
+  
+ <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.24/af-2.3.6/r-2.2.7/sc-2.0.3/sp-1.2.2/sl-1.3.3/datatables.min.js"></script>
+ 
+ 
+  
   <link href="style.css" rel="stylesheet">
   <title>POS</title>
 </head>
 
 <body>
+
+<!-- header-->
 
   <div class='container-fluid' style='height:100%;background-color:'>
         <header> 
@@ -33,7 +42,8 @@ $q=mysqli_query($con,"select * from item_master where item_status='active' order
             </div>
           </div>
         </header>
-    
+
+<!-- table-->>    
       <div class="main">
        <div class="row">
          <div class='col-6' style='padding:0px;border:2px white solid;'>
@@ -52,10 +62,12 @@ $q=mysqli_query($con,"select * from item_master where item_status='active' order
              </tbody>
             </table>
           </div>
-          <div class='col-12 border rounded-lg' style='background-color:lightsteelblue;height:10%;'>
-            <h5 style='height:40px;display:flex;align-items:center;color:black;font-weight:bold'>TOTAL</h5>
-          </div>
+           <div class='col-12 border rounded-lg' style='background-color:lightsteelblue;height:10%;'>
+             <h5 style='height:40px;display:flex;align-items:center;color:black;font-weight:bold'>TOTAL</h5>
+           </div>
          </div>
+
+<!-- barcode column -->         
 
       <div class="col-4" style="background-color:rgb(183, 201, 224);border:2px white solid">
       <div class="col-12 form-group" style='height:10%;'>
@@ -73,12 +85,16 @@ $q=mysqli_query($con,"select * from item_master where item_status='active' order
 		?>
 		</div>
 	  </div>
-      </div>
+  </div>
+
+
+<!-- side buttons -->
+
       <div class="col-2" style="background-color:lightsteelblue;min-height:100%;">
         <div class="row">
           <div class='col-12 mt-1'><button class="btn btn-primary btn-lg col-12" >Save and Print</button></div>
           <div class='col-12 mt-2'><button class="btn btn-primary btn-lg col-12" data-toggle="modal" data-target="#myModal"  >Add Item</button></div>
-          <div class='col-12 mt-2'><button class="btn btn-primary btn-lg col-12" data-toggle="modal" data-target="#myModal1" onclick="fetch_items()" >View/Modify Items</button></div>
+          <div class='col-12 mt-2'><button class="btn btn-primary btn-lg col-12" data-toggle="modal" data-target="#myModal1" onclick="fetch_items()"  >View/Modify Items</button></div>
           <div class='col-12 mt-2'><button class="btn btn-primary btn-lg col-12" data-toggle="modal" data-target="#myModal2" >Discount</button></div>
           <div class='col-12 mt-2'><button class="btn btn-primary btn-lg col-12" data-toggle="modal" data-target="#myModal3" >Payment Mode</button></div>
           <div class='col-12 mt-2'><button class="btn btn-primary btn-lg col-12" data-toggle="modal" data-target="#myModal4" >Hold Bill</button></div>
@@ -87,10 +103,12 @@ $q=mysqli_query($con,"select * from item_master where item_status='active' order
         </div>
         </div>
  
-      </div>
-    </div>
+       </div>
+     </div>
 
-    <!--add items Modal -->
+
+<!--Add items Modal -->
+
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
@@ -122,35 +140,49 @@ $q=mysqli_query($con,"select * from item_master where item_status='active' order
     </div>
   </div>
 
-  <!-- view item Modal -->
-<!-- The Modal -->
-<div class="modal fade" id="myModal1" role="dialog">
+ <!-- View item Modal -->
+
+ <div class="modal fade" id="myModal1" role="dialog">
     <div class="modal-dialog">
     
   <!-- Modal content -->
   <div class="modal-content1">
-    <span class="close">&times;</span>
-    <div class="row">
-        
-         <div class="col-12 mt-1" style="background-color:lightsteelblue;overflow:auto;min-height:90%;max-height:90%;">
-           <table class="table-hover table-condensed" style="width:100%;text-align:center" >
-             <thead>
-             <tr>
-               <th>Item Name</th>
-               <th>Item Code</th>
-               <th>Item Price</th>
-               
-             </tr>
-             </thead>
-           <tbody id="table2">
+  
 
-           </tbody>  
-    </table>
+    <div class="row">
+
+      <div class="col-12 mt-1" style="background-color:lightsteelblue;overflow:auto;min-height:90%;max-height:90%;">
+      <div id="itemtable" class="box"></div>
+        <table id="table1" class="display" style="width:100%">
+         <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Item Code</th>
+                <th>Item Price</th>
+                
+            </tr>
+          </thead>
+
+         <tbody>
+           
+         </tbody>
+         <tfoot>
+            <tr>
+                <th>Item Name</th>
+                <th>Item Code/th>
+                <th>Item Price</th>
+                </tr>
+        </tfoot>
+
+   </table>
+   
     </div>
     </div>
   </div>
  </div>
 </div>
+
+<!-- bottom buttons -->
 
         <div class='row' style='background-color:lightsteelblue;margin-top:20px;'>
           <div class="col-1">
@@ -175,7 +207,8 @@ $q=mysqli_query($con,"select * from item_master where item_status='active' order
         
       </div> 
       
-    
+
+<!-- Scripts -->   
 
 <script>
   function myFunction() {
@@ -222,11 +255,26 @@ function fetch_items(){
 		cache: false,
 		success: function(data){
 			
-			$('#table2').html(data); 
+			$('#table1').html(data); 
 		}
 	});
  }
+
+$(document).ready(function() {
+    var eventFired = function ( type ) {
+        var n = $('#itemtable')[0];
+        n.innerHTML += '<div>'+type+' event - '+new Date().getTime()+'</div>';
+        n.scrollTop = n.scrollHeight;      
+    }
+ 
+    $('#table1')
+        .on( 'order.dt',  function () { eventFired( 'Order' ); } )
+        .on( 'search.dt', function () { eventFired( 'Search' ); } )
+        .on( 'page.dt',   function () { eventFired( 'Page' ); } )
+        .DataTable();
+} );
 </script>
+
 
 
 <script>
