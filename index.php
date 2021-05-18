@@ -16,8 +16,6 @@ $q=mysqli_query($con,"select * from item_master where item_status='active' order
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.24/af-2.3.6/r-2.2.7/sc-2.0.3/sp-1.2.2/sl-1.3.3/datatables.min.css"/>
   
  <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.24/af-2.3.6/r-2.2.7/sc-2.0.3/sp-1.2.2/sl-1.3.3/datatables.min.js"></script>
- 
- 
   
   <link href="style.css" rel="stylesheet">
   <title>POS</title>
