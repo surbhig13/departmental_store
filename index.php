@@ -197,12 +197,35 @@ $q=mysqli_query($con,"select * from item_master where item_status='active' order
           <button class="btn btn-success" type="save" data-dismiss="modal" style="width:130px;" onclick="update_items()">Update</button>
        
           <button  class="btn btn-danger" type="button" data-dismiss="modal" style='width:130px;'>Close</button>
-      
+
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">Delete</button> 
+
         </div>
        </div> 
     </div>
   </div>
 
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to delete this?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="delete_item()">YES</button>
+      </div>
+    </div>
+  </div>
+</div>
+	  
 
 <!-- bottom buttons -->
 
@@ -254,6 +277,15 @@ function update_items(){
     }
   });
 }
+
+function delete_item(){
+  $.post("delete_item.php","id="+document.getElementById("item_row_id").value,function(data, status){
+    if(status=="success"){
+      document.getElementById("item_list").innerHTML=data;
+    }
+  });
+}
+
 function toTitleCase(str) {
   return str.replace(
     /\w\S*/g,
@@ -300,7 +332,11 @@ function fetch_items(){
 
 </script>
 
-
+<script>
+$( document ).on( "click", "#delete", function() {
+  $('#deleteModal').modal('hide');
+});
+</script>
 
 <script>
 //Clock
