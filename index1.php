@@ -11,11 +11,10 @@ $q=mysqli_query($con,"select * from item_master where item_status='active' order
   <script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src= "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> </script> 
+
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
   <link href="style.css" rel="stylesheet">
   <title>POS</title>
 </head>
@@ -138,71 +137,42 @@ $q=mysqli_query($con,"select * from item_master where item_status='active' order
   </div>
 
  <!-- View item Modal -->
-  <div class="modal fade" id="myModal1" role="dialog">
+  <div class="modal fade" id="myModal1" role="dialog" data-dismiss="modal">
     <div class="modal-dialog">
       <div class="modal-content" style='width:600px;'>  
         <div class="row">
-		 <div class="col-12 mt-1" style="">
-           <table id="table1" class="table table-hover table-bordered" style="width:100%">
-			 <thead>
-				<tr>
-					<th>Item Name</th>
-					<th>Item Code</th>
-					<th>Item Price</th>					
-				</tr>
-			 </thead>
-			<tbody id='table1_body'>
-			   <tr data-target="#myModal2" data-dismiss="modal" data-toggle="modal" onclick='edit_item(1)'>
-				   <td id='item_name1'>Surbhi</td>
-				   <td id='item_code1'>1234567890</td>
-				   <td id='item_price1'>999.20</td>
-			   </tr>
-			   <tr data-target="#myModal2" data-dismiss="modal" data-toggle="modal" onclick='edit_item(2)'>
-				   <td id='item_name2'>Lovansh</td>
-				   <td id='item_code2'>0987654321</td>
-				   <td id='item_price2'>202.22</td>
-			   </tr>
-			</tbody>
-		   </table>
-		 </div>
-		</div>
-      </div> 
-	</div>
-   </div>
-
-   <!-- Edit Item Modal-->
-
-   <div class="modal fade" id="myModal2" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">  
-        
-        <form class="col-12" id="updateitemform">
-           <div class="form-row mt-3">
-             <label class="col-sm-4 col-form-label"  for="item_name">ITEM NAME:</label>
-               <input type="text" class="form-control col-sm-8" name="edit_item_name" id="edit_item_name" autocomplete="off" onkeyup="this.value=toTitleCase(this.value)"><br>
-            
-            <label class="col-sm-4 col-form-label mt-2" for="item_code">ITEM CODE:</label>
-              <input type="text" class="form-control col-sm-8 mt-2" id="edit_item_code" name="edit_item_code" autocomplete="off"><br>
-              
-            <label class="col-sm-4 col-form-label mt-2" for="item_price">ITEM PRICE:</label>
-              <input type="text" class="form-control col-sm-8 mt-2" id="edit_item_price" name="edit_item_price" autocomplete="off">  <br><br>
-              <input type='hidden' id='item_row_id' name='item_row_id' value=''>
-           </div>    
-          </form>
-      
-
-         <div class="btn-group"> 
-          <button class="btn btn-success" type="save" data-dismiss="modal" style="width:130px;" onclick="update_items()">Update</button>
-       
-          <button  class="btn btn-danger" type="button" data-dismiss="modal" style='width:130px;'>Close</button>
-      
-        </div>
-       </div> 
+		      <div class="col-12 mt-1" style="">
+            <table id="table1" class="table table-hover table-bordered" style="width:100%">
+            <thead>
+              <tr>
+                <th>Item Name</th>
+                <th>Item Code</th>
+                <th>Item Price</th>					
+              </tr>
+            </thead>
+            <tbody>
+            <tr data-toggle="modal" data-id="1" data-target="#myModal" data-dismiss="modal">
+              <td>rin</td>
+              <td>24234234</td>
+              <td>20</td>
+            </tr>
+            <tr data-toggle="modal" data-id="2" data-target="#myModal" data-dismiss="modal">
+              <td>maggie</td>
+              <td>24234234</td>
+              <td>10</td>
+            </tr>
+            <tr data-toggle="modal" data-id="3" data-target="#myModal" data-dismiss="modal">
+              <td>vimbar</td>
+              <td>24234234</td>
+              <td>15</td>
+            </tr>      
+            </tbody>
+            </table>
+          </div>
+		    </div>
+      </div>
     </div>
   </div>
-
 
 <!-- bottom buttons -->
 
@@ -247,13 +217,6 @@ function add_items(){
     }
   });
 }
-function update_items(){
-  $.post("update_items.php",$("#updateitemform").serialize(),function(data, status){
-    if(status=="success"){
-      document.getElementById("item_list").innerHTML=data;
-    }
-  });
-}
 function toTitleCase(str) {
   return str.replace(
     /\w\S*/g,
@@ -262,12 +225,7 @@ function toTitleCase(str) {
     }
   );
 }
-function edit_item(row_id){
- document.getElementById('edit_item_name').value = document.getElementById('item_name'+row_id).innerHTML;
- document.getElementById('edit_item_code').value = document.getElementById('item_code'+row_id).innerHTML;
- document.getElementById('edit_item_price').value = document.getElementById('item_price'+row_id).innerHTML;
- document.getElementById('item_row_id').value = row_id;
-}
+
 $('#bar').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
@@ -289,7 +247,7 @@ function fetch_items(){
 		cache: false,
 		success: function(data){
 			
-			$('#table1_body').html(data); 
+//			$('#table1').html(data); 
 		}
 	});
  }
@@ -300,6 +258,19 @@ function fetch_items(){
 
 </script>
 
+<script>
+$(function(){
+    $('#myModal1').modal({
+        keyboard: true,
+        backdrop: "static",
+        show:false,
+
+    }).on('show', function(){
+          var getIdFromRow = $(event.target).closest('tr').data('id'); 
+        $(this).find('#additemform').html($('<b> Item Id selected: ' + getIdFromRow  + '</b>'))
+    });
+});
+</script>
 
 
 <script>
