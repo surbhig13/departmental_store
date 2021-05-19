@@ -12,11 +12,10 @@ $q=mysqli_query($con,"select * from item_master where item_status='active' order
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src= "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> </script> 
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-  
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.24/af-2.3.6/r-2.2.7/sc-2.0.3/sp-1.2.2/sl-1.3.3/datatables.min.css"/>
-  
- <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.24/af-2.3.6/r-2.2.7/sc-2.0.3/sp-1.2.2/sl-1.3.3/datatables.min.js"></script>
-  
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    
   <link href="style.css" rel="stylesheet">
   <title>POS</title>
 </head>
@@ -41,7 +40,7 @@ $q=mysqli_query($con,"select * from item_master where item_status='active' order
           </div>
         </header>
 
-<!-- table-->>    
+<!-- table-->    
       <div class="main">
        <div class="row">
          <div class='col-6' style='padding:0px;border:2px white solid;'>
@@ -139,46 +138,38 @@ $q=mysqli_query($con,"select * from item_master where item_status='active' order
   </div>
 
  <!-- View item Modal -->
-
- <div class="modal fade" id="myModal1" role="dialog">
+  <div class="modal fade" id="myModal1" role="dialog">
     <div class="modal-dialog">
-    
-  <!-- Modal content -->
-  <div class="modal-content1">
-  
+      <div class="modal-content" style='width:600px;'>  
+        <div class="row">
+		 <div class="col-12 mt-1" style="">
+           <table id="table1" class="table table-hover table-bordered" style="width:100%">
+			 <thead>
+				<tr>
+					<th>Item Name</th>
+					<th>Item Code</th>
+					<th>Item Price</th>					
+				</tr>
+			 </thead>
+			<tbody>
+			   <tr>
+				   <td>Surbhi</td>
+				   <td>1234567890</td>
+				   <td>999.20</td>
+			   </tr>
+			   <tr>
+				   <td>Lovansh</td>
+				   <td>0987654321</td>
+				   <td>202.22</td>
+			   </tr>
+			</tbody>
+		   </table>
+		 </div>
+		</div>
+      </div> 
+	</div>
+   </div>
 
-    <div class="row">
-
-      <div class="col-12 mt-1" style="background-color:lightsteelblue;overflow:auto;min-height:90%;max-height:90%;">
-      <div id="itemtable" class="box"></div>
-        <table id="table1" class="display" style="width:100%">
-         <thead>
-            <tr>
-                <th>Item Name</th>
-                <th>Item Code</th>
-                <th>Item Price</th>
-                
-            </tr>
-          </thead>
-
-         <tbody>
-           
-         </tbody>
-         <tfoot>
-            <tr>
-                <th>Item Name</th>
-                <th>Item Code/th>
-                <th>Item Price</th>
-                </tr>
-        </tfoot>
-
-   </table>
-   
-    </div>
-    </div>
-  </div>
- </div>
-</div>
 
 <!-- bottom buttons -->
 
@@ -253,24 +244,15 @@ function fetch_items(){
 		cache: false,
 		success: function(data){
 			
-			$('#table1').html(data); 
+//			$('#table1').html(data); 
 		}
 	});
  }
 
-$(document).ready(function() {
-    var eventFired = function ( type ) {
-        var n = $('#itemtable')[0];
-        n.innerHTML += '<div>'+type+' event - '+new Date().getTime()+'</div>';
-        n.scrollTop = n.scrollHeight;      
-    }
- 
-    $('#table1')
-        .on( 'order.dt',  function () { eventFired( 'Order' ); } )
-        .on( 'search.dt', function () { eventFired( 'Search' ); } )
-        .on( 'page.dt',   function () { eventFired( 'Page' ); } )
-        .DataTable();
-} );
+	$(document).ready(function() {
+    $('#table1').dataTable();
+    } );
+
 </script>
 
 
